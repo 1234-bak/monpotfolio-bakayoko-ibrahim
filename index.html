@@ -40,8 +40,12 @@ body{
     color:var(--text-color)
 }
 section{
-    min-height: 100vh;
+    
     padding: 10rem 9% 2rem;
+}
+
+.about{
+    min-height: 200vh;
 }
 
 .header{
@@ -89,6 +93,7 @@ nav a.active{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 .image_content{
     width: 200px;
@@ -216,11 +221,11 @@ span{
     margin-top: 5rem;
 }
 .services-container{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   gap: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 2rem;
 }
 .services-container .services-box{
     flex: 1 1 30rem;
@@ -267,7 +272,106 @@ span{
 
 .telecharger{
     margin-top: 25px;
-   
+
+}
+
+@media (max-width: 991px) {
+header, 
+header.sticky{
+    padding: 10px 20px;
+    
+}
+
+header .navbar li{
+    margin-left: 0px;
+}
+
+header .navbar li a {
+    text-decoration: none;
+    color: #111;
+    font-size: 1.6em;
+    font-weight: 300;
+}
+
+.navbar{
+    display: none;
+}
+section{
+    padding: 20px;
+    
+}
+
+.about{
+    min-height: 420vh;
+}
+
+header .navbar.active{
+    width: 100%;
+    height: calc(100% -68px);
+    position: fixed;
+    top: 68px;
+    left:0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #000;
+    align-items: center;
+}
+
+.home{
+    margin-top: 80px;
+}
+
+.menuToggle{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-image: url(./img/menu.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    background-size: 30px;
+}
+
+.menuToggle.active
+{
+    background-image: url(./img/close.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-origin: center;
+}
+
+header.sticky .menuToggle{
+    filter: invert(1);
+}
+
+
+
+
+@media (max-width: 480px)
+{
+    .home h3, .home h1{
+        font-size: 2.2em;
+        color: #fff;
+    }
+
+    .titre-text{
+        color: #000;
+        font-size: 2rem;
+        font-weight: 300;
+        text-transform: capitalize;
+    }
+
+    .temoignage h2 
+    {
+        font-size: 1.1em;
+    }
+
+    .temoignage p{
+        text-align: center;
+    }
+
+    
 }
 
 
@@ -275,14 +379,15 @@ span{
 </style>
     <!--=========le header======-->
     <header class="header">
-    <a href="#" class="logo"><span>Mon Portfolio <!--<img src="img/bakus.jpg" alt="">--></span></a>
+    <a href="#" class="logo"><span>Mon Portfolio</span></a>
         <i class='bx bx-menu' id="menu-icon"></i>
+        <div class="menuToggle" onclick="toggleMenu();"></div>
 
         <nav class="navbar">
-            <a href="#accueil" class="active">Accueil</a>
-            <a href="#propos">A propos</a>
-            <a href="#services">Mes projets</a>
-            <a href="#contact">Contact</a>
+            <a href="#accueil" class="active" onclick="toggleMenu();">Accueil</a>
+            <a href="#propos" onclick="toggleMenu();">A propos</a>
+            <a href="#services" onclick="toggleMenu();">Mes projets</a>
+            <a href="#contact" onclick="toggleMenu();">Contact</a>
         </nav>
     </header>
     
@@ -297,13 +402,13 @@ span{
             <h3>je reponds au nom de</h3>
             <h1>BAKAYOKO IBRAHIM, </h1>
             <h3>Etudiant informaticien autodidacte <span>Développeur full stack</span>,
-             J'ai eu a réalisé différent projet lié au domaine du digital au cours de ma formation</h3>
+            J'ai eu a réalisé différent projet lié au domaine du digital au cours de ma formation</h3>
             <a href="img/CV_BakayokoIbrahim.pdf" target="blank" class="btn telecharger">Télécharger mon cv</a>
             
         </div>
         
     </section>
-                  <!--=========la partie du a propos ======-->
+                <!--=========la partie du a propos ======-->
     <section class="about" id="propos">
         <div class="about-content">
             <h2 class="heading">A propos de moi</h2>
@@ -352,7 +457,7 @@ span{
             
         </div>
     </section>
-             <!--=========la partie du services ======-->
+            <!--=========la partie du services ======-->
     <section class="services" id="services">
         <h2 class="heading">Mes projets</h2>
         <div class="services-container">
@@ -368,7 +473,7 @@ span{
                 <p>site web de reservation de délicieuse plat ivoirienne  </p>
                 <a href="#" target="blank" class="btn">Voir le site</a>
             </div>
-           
+        
         </div>
     </section>
         <h2 class="heading" id="contact">Me contacter</h2>
@@ -385,14 +490,26 @@ span{
         
             </div>
         </div>
-    
-    <!--=========le portfolio======-->
-<script>
+        <script>
+    window.addEventListener('scroll', function(){
+        const header =document.querySelector('header');
+        //  header.classList.toggle("sticky", window.scrollY > 0 );
+    });
+
+    function toggleMenu(){
+        const tmenuToggle = document.querySelector('.menuToggle');
+        const navbar = document.querySelector('.navbar');
+        navbar.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    }
     const btn = document.querySelector('.button');
     const plus = document.querySelector('.plus');
 
     btn.addEventListener('click',()=>{plus.classList.toggle('show')});
 
 </script>
+    <!--=========le portfolio======-->
+
+
 </body>
 </html>
